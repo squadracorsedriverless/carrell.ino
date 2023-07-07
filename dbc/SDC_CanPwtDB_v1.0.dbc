@@ -1,0 +1,220 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: BCM FBMS
+VAL_TABLE_ Vtbl_BCM_HeaterSts 1 "HeaterON" 0 "HeaterOFF" ;
+VAL_TABLE_ Vtbl_FBMS_TractionEn 1 "TractionPowerAllowed" 0 "TractionPowerNotAllowed" ;
+VAL_TABLE_ Vtbl_FBMS_RegenBrakeEn 1 "RegenerativeBrakingAllowed" 0 "RegenerativeBrakingNotAllowed" ;
+VAL_TABLE_ Vtbl_BCM_ClearLatchedErrors 1 "LatchedErrorsClearRequested" 0 "NoReq" ;
+VAL_TABLE_ Vtbl_FBMS_DeEnergizeReq 1 "DischargeHVbus" 0 "NoReq" ;
+VAL_TABLE_ Vtbl_FBMS_ContactorsSts 3 "ContactorsFault" 2 "ContactorsClosed" 1 "ContactorsOpening" 0 "ContactorsOpen" ;
+VAL_TABLE_ Vtbl_FBMS_HeatingReq 1 "HeatingTurnOnReq" 0 "HeatingTurnOffReq" ;
+VAL_TABLE_ Vtbl_FBMS_CoolingReq 1 "CoolingRequested" 0 "NoReq" ;
+VAL_TABLE_ Vtbl_FBMS_ChargeSts 3 "ChargeCompleted" 2 "Charging" 1 "ChargeEnable" 0 "ChargeNotAvailable" ;
+VAL_TABLE_ Vtbl_FBMS_Balancing 1 "Balance_Running" 0 "Balance_OFF" ;
+VAL_TABLE_ Vtbl_BCM_KL50_Sts 1 "KL50_ON" 0 "KL50_OFF" ;
+VAL_TABLE_ Vtbl_BCM_KL15_Sts 1 "KL15_ON" 0 "KL15_OFF" ;
+VAL_TABLE_ Vtbl_BCM_ChargeReq 1 "ChargeRequested" 0 "NoReq" ;
+VAL_TABLE_ Vtbl_BCM_CoolingPumpSts 1 "PumpRunning" 0 "PumpStopped" ;
+VAL_TABLE_ Vtbl_BCM_ContactorsMode 3 "NoReq" 2 "ContactorsClose" 1 "ContactorsOpen" 0 "NoReq" ;
+
+
+BO_ 3221225472 VECTOR__INDEPENDENT_SIG_MSG: 0 Vector__XXX
+ SG_ FBMS_ErrLT_ExternalFault : 0|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ FBMS_Err_ExternalFault : 0|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ FBMS_ErrLT_Contactors_PS : 0|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ FBMS_Err_Contactors_PS : 0|1@0+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 1593 FBMS_Cells_Vdc: 8 FBMS
+ SG_ FBMS_VDC : 39|11@0+ (0.294117647058824,0) [0|602.058823529412] "V" Vector__XXX
+ SG_ FBMS_Cells_MinVolt : 7|16@0+ (7.6295109483E-005,0) [0|5] "V"  BCM
+ SG_ FBMS_Cells_MaxVolt : 23|16@0+ (7.6295109483E-005,0) [0|5] "V"  BCM
+ SG_ FBMS_Cells_MsgCnt : 51|4@0+ (1,0) [0|15] ""  BCM
+ SG_ FBMS_Cells_Checksum : 63|8@0+ (1,0) [0|255] ""  BCM
+
+BO_ 291 BCM_VehicleStatus: 8 BCM
+ SG_ BCM_ClearLatchedErrors : 2|1@0+ (1,0) [0|1] ""  FBMS
+ SG_ BCM_ContactorsMode : 1|2@0+ (1,0) [0|3] ""  FBMS
+ SG_ BCM_MsgCnt : 51|4@0+ (1,0) [0|15] ""  FBMS
+ SG_ BCM_ChargeReq : 3|1@0+ (1,0) [0|1] ""  FBMS
+ SG_ BCM_VehicleStatus_Checksum : 63|8@0+ (1,0) [0|255] ""  FBMS
+
+BO_ 1283 FBMS_Limits: 8 FBMS
+ SG_ FBMS_DeEnergizeReq : 53|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ FBMS_Limits_MsgCnt : 51|4@0+ (1,0) [0|15] "" Vector__XXX
+ SG_ FBMS_TractionEn : 55|1@0+ (1,0) [0|1] ""  BCM
+ SG_ FBMS_RegenBrakeEn : 54|1@0+ (1,0) [0|1] ""  BCM
+ SG_ FBMS_MaxRegenPow : 35|12@0+ (0.05,0) [0|200] "kW"  BCM
+ SG_ FBMS_MaxOutputPow : 31|12@0+ (0.05,0) [0|200] "kW"  BCM
+ SG_ FBMS_Limits_Checksum : 63|8@0+ (1,0) [0|255] ""  BCM
+ SG_ FBMS_MaxOutputCurr : 7|12@0+ (0.05,0) [0|204.75] "A"  BCM
+ SG_ FBMS_MaxRegenCurr : 11|12@0+ (0.05,0) [0|204.75] "A"  BCM
+
+BO_ 1289 FBMS_Charge: 8 FBMS
+ SG_ FBMS_Charge_MsgCnt : 51|4@0+ (1,0) [0|15] "" Vector__XXX
+ SG_ FBMS_Unbalance : 26|10@0+ (1,0) [0|1023] "mV"  BCM
+ SG_ FBMS_Balancing : 5|1@0+ (1,0) [0|1] ""  BCM
+ SG_ FBMS_ChargeMaxVolt : 23|13@0+ (0.0769230769230769,0) [0|630.076923076923] "V"  BCM
+ SG_ FBMS_ChargeMaxCurr : 3|12@0+ (0.05,0) [0|204.75] "A"  BCM
+ SG_ FBMS_ChargeSts : 7|2@0+ (1,0) [0|1] ""  BCM
+ SG_ FBMS_Charge_Checksum : 63|8@0+ (1,0) [0|255] ""  BCM
+
+BO_ 1281 FBMS_Status: 8 FBMS
+ SG_ FBMS_Fault : 5|1@0+ (1,0) [0|1] ""  BCM
+ SG_ FBMS_BatteryCurrent : 20|13@0- (0.05,0) [-204.8|204.75] "A"  BCM
+ SG_ FBMS_ActPower : 39|12@0- (0.1,0) [-200|200] "kW"  BCM
+ SG_ FBMS_SoC : 43|8@0+ (0.5,0) [0|100] "%"  BCM
+ SG_ FBMS_ContactorsSts : 7|2@0+ (1,0) [0|1] ""  BCM
+ SG_ FBMS_MsgCnt : 51|4@0+ (1,0) [0|15] ""  BCM
+ SG_ FBMS_Status_Checksum : 63|8@0+ (1,0) [0|255] ""  BCM
+ SG_ FBMS_BatteryVoltage : 15|11@0+ (0.294117647058824,0) [0|602.058823529412] "V"  BCM
+
+BO_ 1286 FBMS_WarnErr: 8 FBMS
+ SG_ FBMS_ErrLT_CurrentSensor_KO : 41|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ FBMS_Err_CurrentSensor_KO : 25|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ FBMS_ErrLT_BatteryFault : 42|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ FBMS_Err_BatteryFault : 26|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ FBMS_WarnErr_MsgCnt : 51|4@0+ (1,0) [0|15] "" Vector__XXX
+ SG_ FBMS_ErrLT_UnderVoltage : 33|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ FBMS_ErrLT_UnderTemp : 46|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ FBMS_ErrLT_SystemFault : 45|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ FBMS_ErrLT_OverVoltage : 34|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ FBMS_ErrLT_OverTemp : 47|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ FBMS_ErrLT_OverCurrent : 36|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ FBMS_ErrLT_Contactors : 35|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ FBMS_ErrLT_Insulation : 39|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ FBMS_Err_UnderVoltage : 17|1@0+ (1,0) [0|1] ""  BCM
+ SG_ FBMS_Err_UnderTemp : 30|1@0+ (1,0) [0|1] ""  BCM
+ SG_ FBMS_Err_SystemFault : 29|1@0+ (1,0) [0|1] ""  BCM
+ SG_ FBMS_Err_OverVoltage : 18|1@0+ (1,0) [0|1] ""  BCM
+ SG_ FBMS_Err_OverTemp : 31|1@0+ (1,0) [0|1] ""  BCM
+ SG_ FBMS_Err_OverCurrent : 20|1@0+ (1,0) [0|1] ""  BCM
+ SG_ FBMS_Err_Contactors : 19|1@0+ (1,0) [0|1] ""  BCM
+ SG_ FBMS_Err_Insulation : 23|1@0+ (1,0) [0|1] ""  BCM
+ SG_ FBMS_Warn_OverCurrent : 4|1@0+ (1,0) [0|1] ""  BCM
+ SG_ FBMS_Warn_NoRegenBrake : 0|1@0+ (1,0) [0|1] ""  BCM
+ SG_ FBMS_Warn_LimitsByVolt : 1|1@0+ (1,0) [0|1] ""  BCM
+ SG_ FBMS_Warn_LimitsByTemp : 2|1@0+ (1,0) [0|1] ""  BCM
+ SG_ FBMS_Warn_Insulation : 7|1@0+ (1,0) [0|1] ""  BCM
+ SG_ FBMS_WarnErr_Checksum : 63|8@0+ (1,0) [0|255] ""  BCM
+
+
+
+CM_ BO_ 3221225472 "This is a message for not used signals, created by Vector CANdb++ DBC OLE DB Provider.";
+CM_ SG_ 3221225472 FBMS_ErrLT_ExternalFault "Latched external fault pin LOW";
+CM_ SG_ 3221225472 FBMS_Err_ExternalFault "External fault pin LOW";
+CM_ SG_ 3221225472 FBMS_ErrLT_Contactors_PS "Latched loss of contactors power supply";
+CM_ SG_ 3221225472 FBMS_Err_Contactors_PS "Loss of contactors power supply";
+CM_ SG_ 1593 FBMS_VDC "VDC voltage, vehicle side";
+CM_ SG_ 1593 FBMS_Cells_MinVolt "Minimum cells' voltage";
+CM_ SG_ 1593 FBMS_Cells_MaxVolt "Maximum cells' voltage";
+CM_ SG_ 1593 FBMS_Cells_MsgCnt "Incremental counter for active check";
+CM_ SG_ 1593 FBMS_Cells_Checksum "Negated byte sum of all message fields excluding checksum itself";
+CM_ SG_ 291 BCM_MsgCnt "Incremental counter for active check";
+CM_ SG_ 291 BCM_VehicleStatus_Checksum "Negated byte sum of all message fields excluding checksum itself";
+CM_ SG_ 1283 FBMS_Limits_MsgCnt "Incremental counter for active check";
+CM_ SG_ 1283 FBMS_MaxRegenPow "Maximum regenerative DC power";
+CM_ SG_ 1283 FBMS_MaxOutputPow "Maximum traction DC power";
+CM_ SG_ 1283 FBMS_Limits_Checksum "Negated byte sum of all message fields excluding checksum itself";
+CM_ SG_ 1283 FBMS_MaxOutputCurr "Maximum traction DC current";
+CM_ SG_ 1283 FBMS_MaxRegenCurr "Maximum regenerative DC current";
+CM_ SG_ 1289 FBMS_Charge_MsgCnt "Incremental counter for active check";
+CM_ SG_ 1289 FBMS_Unbalance "Maximum voltage difference between battery cells";
+CM_ SG_ 1289 FBMS_ChargeMaxVolt "Maximum charge voltage";
+CM_ SG_ 1289 FBMS_ChargeMaxCurr "Maximum charge current";
+CM_ SG_ 1289 FBMS_Charge_Checksum "Negated byte sum of all message fields excluding checksum itself";
+CM_ SG_ 1281 FBMS_Fault "If 1, at least one fault is asserted";
+CM_ SG_ 1281 FBMS_ActPower "Actual power drawn from the battery";
+CM_ SG_ 1281 FBMS_SoC "Battery state of charge";
+CM_ SG_ 1281 FBMS_MsgCnt "Incremental counter for active check";
+CM_ SG_ 1281 FBMS_Status_Checksum "Negated byte sum of all message fields excluding checksum itself";
+CM_ SG_ 1286 FBMS_ErrLT_CurrentSensor_KO "Latched current sensors KO";
+CM_ SG_ 1286 FBMS_Err_CurrentSensor_KO "Current sensors KO";
+CM_ SG_ 1286 FBMS_ErrLT_BatteryFault "Latched generic Battery fault (slave communication, over/under voltage/temperature...)";
+CM_ SG_ 1286 FBMS_Err_BatteryFault "Generic Battery fault (slave communication, over/under voltage/temperature...)";
+CM_ SG_ 1286 FBMS_WarnErr_MsgCnt "Incremental counter for active check";
+CM_ SG_ 1286 FBMS_ErrLT_UnderVoltage "Latched battery under voltage fault";
+CM_ SG_ 1286 FBMS_ErrLT_UnderTemp "Latched battery under temperature fault";
+CM_ SG_ 1286 FBMS_ErrLT_SystemFault "Latched BMS internal fault";
+CM_ SG_ 1286 FBMS_ErrLT_OverVoltage "Latched battery over voltage fault";
+CM_ SG_ 1286 FBMS_ErrLT_OverTemp "Latched battery over temperature fault";
+CM_ SG_ 1286 FBMS_ErrLT_OverCurrent "Latched battery over current fault";
+CM_ SG_ 1286 FBMS_ErrLT_Contactors "Latched contactors fault";
+CM_ SG_ 1286 FBMS_ErrLT_Insulation "Latched loss of insulation fault";
+CM_ SG_ 1286 FBMS_Err_UnderVoltage "Battery under voltage fault";
+CM_ SG_ 1286 FBMS_Err_UnderTemp "Battery under temperature fault";
+CM_ SG_ 1286 FBMS_Err_SystemFault "BMS internal error";
+CM_ SG_ 1286 FBMS_Err_OverVoltage "Battery over voltage fault";
+CM_ SG_ 1286 FBMS_Err_OverTemp "Battery over temperature fault";
+CM_ SG_ 1286 FBMS_Err_OverCurrent "Battery over current fault";
+CM_ SG_ 1286 FBMS_Err_Contactors "Contactors fault";
+CM_ SG_ 1286 FBMS_Err_Insulation "Loss of insulation between HV and chassis";
+CM_ SG_ 1286 FBMS_Warn_OverCurrent "Battery over current warning";
+CM_ SG_ 1286 FBMS_Warn_NoRegenBrake "No regenerative braking allowed, driver shall be informed";
+CM_ SG_ 1286 FBMS_Warn_LimitsByVolt "Battery performance limited by voltage";
+CM_ SG_ 1286 FBMS_Warn_LimitsByTemp "Battery performance limited by temperature";
+CM_ SG_ 1286 FBMS_Warn_Insulation "Loss of insulation between HV and chassis warning";
+CM_ SG_ 1286 FBMS_WarnErr_Checksum "Negated byte sum of all message fields excluding checksum itself";
+BA_DEF_  "Baudrate" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "Cyclic","NoMsgSendType";
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 1000;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_DEF_  "Baudrate" 500000;
+BA_DEF_DEF_  "GenMsgSendType" "NoMsgSendType";
+BA_DEF_DEF_  "GenMsgCycleTime" 10;
+BA_DEF_DEF_  "BusType" "";
+BA_ "Baudrate" 1000000;
+BA_ "BusType" "CAN";
+BA_ "GenMsgCycleTime" BO_ 1593 20;
+BA_ "GenMsgSendType" BO_ 1593 0;
+BA_ "GenMsgSendType" BO_ 291 0;
+BA_ "GenMsgCycleTime" BO_ 291 100;
+BA_ "GenMsgCycleTime" BO_ 1283 20;
+BA_ "GenMsgSendType" BO_ 1283 0;
+BA_ "GenMsgCycleTime" BO_ 1289 50;
+BA_ "GenMsgSendType" BO_ 1289 0;
+BA_ "GenMsgSendType" BO_ 1281 0;
+BA_ "GenMsgCycleTime" BO_ 1281 20;
+BA_ "GenMsgSendType" BO_ 1286 0;
+BA_ "GenMsgCycleTime" BO_ 1286 50;
+VAL_ 291 BCM_ClearLatchedErrors 1 "LatchedErrorsClearRequested" 0 "NoReq" ;
+VAL_ 291 BCM_ChargeReq 1 "ChargeRequested" 0 "NoReq" ;
+VAL_ 1283 FBMS_DeEnergizeReq 1 "DischargeHVbus" 0 "NoReq" ;
+VAL_ 1283 FBMS_TractionEn 1 "TractionPowerAllowed" 0 "TractionPowerNotAllowed" ;
+VAL_ 1283 FBMS_RegenBrakeEn 1 "RegenerativeBrakingAllowed" 0 "RegenerativeBrakingNotAllowed" ;
+VAL_ 1289 FBMS_Balancing 1 "Balance_Running" 0 "Balance_OFF" ;
+VAL_ 1289 FBMS_ChargeSts 3 "ChargeCompleted" 2 "Charging" 1 "ChargeEnable" 0 "ChargeNotAvailable" ;
+VAL_ 1281 FBMS_ContactorsSts 3 "ContactorsFault" 2 "ContactorsClosed" 1 "ContactorsOpening" 0 "ContactorsOpen" ;
+
