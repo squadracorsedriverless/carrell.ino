@@ -44,6 +44,7 @@ Core/Src/sdc_can_pwt_db_v1_0.c \
 Core/Src/stm32l4xx_hal_msp.c \
 Core/Src/stm32l4xx_it.c \
 Core/Src/system_stm32l4xx.c \
+Core/Src/tlb_battery.c \
 Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.c \
 Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_can.c \
 Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.c \

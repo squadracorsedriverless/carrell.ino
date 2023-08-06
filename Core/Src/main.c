@@ -25,6 +25,7 @@
 /* USER CODE BEGIN Includes */
 #include "nlg5_brusa.h"
 #include "sdc_can_pwt_db_v1_0.h"
+#include "tlb_battery.h"
 #include <stdbool.h>
 
 /* USER CODE END Includes */
@@ -98,6 +99,8 @@ int main(void)
     float maxcurr = 0;
     uint32_t mailbox;
     uint32_t time = 0;
+    HAL_GPIO_WritePin(AMS_ERROR_GPIO_Port, AMS_ERROR_Pin, 1);
+    HAL_GPIO_WritePin(IMD_ERROR_GPIO_Port, IMD_ERROR_Pin, 1);
     /* USER CODE END 2 */
 
     /* Infinite loop */
@@ -119,6 +122,14 @@ int main(void)
                     // charging = sdc_can_pwt_db_v1_0_fbms_charge_fbms_charge_sts_decode(status.fbms_charge_sts);
                     maxvolt = sdc_can_pwt_db_v1_0_fbms_charge_fbms_charge_max_volt_decode(status.fbms_charge_max_volt);
                     maxcurr = sdc_can_pwt_db_v1_0_fbms_charge_fbms_charge_max_curr_decode(status.fbms_charge_max_curr);
+                }
+                else if (rxmsg.StdId == TLB_BATTERY_TLB_BAT_INTRNL_FUNC_FRAME_ID && rxmsg.DLC == TLB_BATTERY_TLB_BAT_INTRNL_FUNC_LENGTH)
+                {
+                    struct tlb_battery_tlb_bat_intrnl_func_t status;
+                    tlb_battery_tlb_bat_intrnl_func_unpack(&status, data, rxmsg.DLC);
+
+                    HAL_GPIO_WritePin(AMS_ERROR_GPIO_Port, AMS_ERROR_Pin, tlb_battery_tlb_bat_intrnl_func_ams_err_ltch_decode(status.ams_err_ltch));
+                    HAL_GPIO_WritePin(IMD_ERROR_GPIO_Port, IMD_ERROR_Pin, tlb_battery_tlb_bat_intrnl_func_imd_err_ltch_decode(status.imd_err_ltch));
                 }
             }
         }

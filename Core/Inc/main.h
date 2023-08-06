@@ -59,6 +59,10 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define PON_Pin GPIO_PIN_6
 #define PON_GPIO_Port GPIOA
+#define IMD_ERROR_Pin GPIO_PIN_8
+#define IMD_ERROR_GPIO_Port GPIOA
+#define AMS_ERROR_Pin GPIO_PIN_15
+#define AMS_ERROR_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
 

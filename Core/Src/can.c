@@ -22,6 +22,7 @@
 
 /* USER CODE BEGIN 0 */
 #include "sdc_can_pwt_db_v1_0.h"
+#include "tlb_battery.h"
 
 /* USER CODE END 0 */
 
@@ -31,31 +32,31 @@ CAN_HandleTypeDef hcan1;
 void MX_CAN1_Init(void)
 {
 
-  /* USER CODE BEGIN CAN1_Init 0 */
+    /* USER CODE BEGIN CAN1_Init 0 */
     CAN_FilterTypeDef sFilterConfig;
 
-  /* USER CODE END CAN1_Init 0 */
+    /* USER CODE END CAN1_Init 0 */
 
-  /* USER CODE BEGIN CAN1_Init 1 */
+    /* USER CODE BEGIN CAN1_Init 1 */
 
-  /* USER CODE END CAN1_Init 1 */
-  hcan1.Instance = CAN1;
-  hcan1.Init.Prescaler = 5;
-  hcan1.Init.Mode = CAN_MODE_NORMAL;
-  hcan1.Init.SyncJumpWidth = CAN_SJW_1TQ;
-  hcan1.Init.TimeSeg1 = CAN_BS1_13TQ;
-  hcan1.Init.TimeSeg2 = CAN_BS2_2TQ;
-  hcan1.Init.TimeTriggeredMode = DISABLE;
-  hcan1.Init.AutoBusOff = ENABLE;
-  hcan1.Init.AutoWakeUp = DISABLE;
-  hcan1.Init.AutoRetransmission = DISABLE;
-  hcan1.Init.ReceiveFifoLocked = DISABLE;
-  hcan1.Init.TransmitFifoPriority = DISABLE;
-  if (HAL_CAN_Init(&hcan1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN CAN1_Init 2 */
+    /* USER CODE END CAN1_Init 1 */
+    hcan1.Instance = CAN1;
+    hcan1.Init.Prescaler = 5;
+    hcan1.Init.Mode = CAN_MODE_NORMAL;
+    hcan1.Init.SyncJumpWidth = CAN_SJW_1TQ;
+    hcan1.Init.TimeSeg1 = CAN_BS1_13TQ;
+    hcan1.Init.TimeSeg2 = CAN_BS2_2TQ;
+    hcan1.Init.TimeTriggeredMode = DISABLE;
+    hcan1.Init.AutoBusOff = ENABLE;
+    hcan1.Init.AutoWakeUp = DISABLE;
+    hcan1.Init.AutoRetransmission = DISABLE;
+    hcan1.Init.ReceiveFifoLocked = DISABLE;
+    hcan1.Init.TransmitFifoPriority = DISABLE;
+    if (HAL_CAN_Init(&hcan1) != HAL_OK)
+    {
+        Error_Handler();
+    }
+    /* USER CODE BEGIN CAN1_Init 2 */
 
     sFilterConfig.FilterBank = 0;
     sFilterConfig.FilterMode = CAN_FILTERMODE_IDLIST;
@@ -63,7 +64,7 @@ void MX_CAN1_Init(void)
     sFilterConfig.FilterFIFOAssignment = CAN_RX_FIFO0;
     sFilterConfig.FilterActivation = CAN_FILTER_ENABLE;
 
-    sFilterConfig.FilterIdHigh = (SDC_CAN_PWT_DB_V1_0_FBMS_STATUS_FRAME_ID << 5);
+    sFilterConfig.FilterIdHigh = (TLB_BATTERY_TLB_BAT_INTRNL_FUNC_FRAME_ID << 5);
     sFilterConfig.FilterIdLow = (SDC_CAN_PWT_DB_V1_0_FBMS_STATUS_FRAME_ID << 5);
 
     if (HAL_CAN_ConfigFilter(&hcan1, &sFilterConfig) != HAL_OK)
@@ -72,61 +73,60 @@ void MX_CAN1_Init(void)
         Error_Handler();
     }
 
-  /* USER CODE END CAN1_Init 2 */
-
+    /* USER CODE END CAN1_Init 2 */
 }
 
-void HAL_CAN_MspInit(CAN_HandleTypeDef* canHandle)
+void HAL_CAN_MspInit(CAN_HandleTypeDef *canHandle)
 {
 
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
-  if(canHandle->Instance==CAN1)
-  {
-  /* USER CODE BEGIN CAN1_MspInit 0 */
+    GPIO_InitTypeDef GPIO_InitStruct = {0};
+    if (canHandle->Instance == CAN1)
+    {
+        /* USER CODE BEGIN CAN1_MspInit 0 */
 
-  /* USER CODE END CAN1_MspInit 0 */
-    /* CAN1 clock enable */
-    __HAL_RCC_CAN1_CLK_ENABLE();
+        /* USER CODE END CAN1_MspInit 0 */
+        /* CAN1 clock enable */
+        __HAL_RCC_CAN1_CLK_ENABLE();
 
-    __HAL_RCC_GPIOA_CLK_ENABLE();
-    /**CAN1 GPIO Configuration
-    PA11     ------> CAN1_RX
-    PA12     ------> CAN1_TX
-    */
-    GPIO_InitStruct.Pin = GPIO_PIN_11|GPIO_PIN_12;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-    GPIO_InitStruct.Alternate = GPIO_AF9_CAN1;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+        __HAL_RCC_GPIOA_CLK_ENABLE();
+        /**CAN1 GPIO Configuration
+        PA11     ------> CAN1_RX
+        PA12     ------> CAN1_TX
+        */
+        GPIO_InitStruct.Pin = GPIO_PIN_11 | GPIO_PIN_12;
+        GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+        GPIO_InitStruct.Pull = GPIO_NOPULL;
+        GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+        GPIO_InitStruct.Alternate = GPIO_AF9_CAN1;
+        HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /* USER CODE BEGIN CAN1_MspInit 1 */
+        /* USER CODE BEGIN CAN1_MspInit 1 */
 
-  /* USER CODE END CAN1_MspInit 1 */
-  }
+        /* USER CODE END CAN1_MspInit 1 */
+    }
 }
 
-void HAL_CAN_MspDeInit(CAN_HandleTypeDef* canHandle)
+void HAL_CAN_MspDeInit(CAN_HandleTypeDef *canHandle)
 {
 
-  if(canHandle->Instance==CAN1)
-  {
-  /* USER CODE BEGIN CAN1_MspDeInit 0 */
+    if (canHandle->Instance == CAN1)
+    {
+        /* USER CODE BEGIN CAN1_MspDeInit 0 */
 
-  /* USER CODE END CAN1_MspDeInit 0 */
-    /* Peripheral clock disable */
-    __HAL_RCC_CAN1_CLK_DISABLE();
+        /* USER CODE END CAN1_MspDeInit 0 */
+        /* Peripheral clock disable */
+        __HAL_RCC_CAN1_CLK_DISABLE();
 
-    /**CAN1 GPIO Configuration
-    PA11     ------> CAN1_RX
-    PA12     ------> CAN1_TX
-    */
-    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_11|GPIO_PIN_12);
+        /**CAN1 GPIO Configuration
+        PA11     ------> CAN1_RX
+        PA12     ------> CAN1_TX
+        */
+        HAL_GPIO_DeInit(GPIOA, GPIO_PIN_11 | GPIO_PIN_12);
 
-  /* USER CODE BEGIN CAN1_MspDeInit 1 */
+        /* USER CODE BEGIN CAN1_MspDeInit 1 */
 
-  /* USER CODE END CAN1_MspDeInit 1 */
-  }
+        /* USER CODE END CAN1_MspDeInit 1 */
+    }
 }
 
 /* USER CODE BEGIN 1 */

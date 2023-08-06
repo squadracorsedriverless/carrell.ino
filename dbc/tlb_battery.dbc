@@ -1,0 +1,105 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: dash dspace tlb_bat bms_lv
+
+
+BO_ 7 ShtdwnLineTsacStatus: 3 tlb_bat
+ SG_ ShtdwnPostImdErrRlyActiveLvl : 2|1@1+ (1,0) [0|1] ""  dspace
+ SG_ ShtdwnPostPrchResistVoltageLvl : 15|8@0+ (0.0977,0) [0|25] "V"  dspace
+ SG_ ShtdwnTsacFinSecInActiveLvl : 3|1@1+ (1,0) [0|1] ""  dspace
+ SG_ ShtdwnPostDlyCapsVoltageLvl : 23|8@0+ (0.0977,0) [0|25] "V"  dspace
+ SG_ ShtdwnTsacInitSecInActiveLvl : 0|1@1+ (1,0) [0|1] ""  dspace
+ SG_ ShtdwnPostAmsErrRlyActiveLvl : 1|1@1+ (1,0) [0|1] ""  dspace
+
+BO_ 8 TlbBatIntrnlFunc: 3 tlb_bat
+ SG_ ShtdwnPrchRlyEn : 2|1@1+ (1,0) [0|1] ""  dspace
+ SG_ Shrt2GndAirNeg : 3|1@1+ (1,0) [0|1] ""  dspace
+ SG_ DcBusVehicleSideOver60V : 6|1@1+ (1,0) [0|1] ""  dspace
+ SG_ AirNegClsdIntenState : 7|1@1+ (1,0) [0|1] ""  dspace
+ SG_ AirPosClsdIntenState : 8|1@1+ (1,0) [0|1] ""  dspace
+ SG_ DcBusPrchRlyEnAuxState : 12|1@1+ (1,0) [0|1] ""  dspace
+ SG_ AirPosClsdImpErr : 14|1@1+ (1,0) [0|1] ""  dspace
+ SG_ DcBusPrchRlyEnImpErr : 15|1@1+ (1,0) [0|1] ""  dspace
+ SG_ AnyImpErrLtch : 18|1@1+ (1,0) [0|1] ""  dspace
+ SG_ ImdErrLtch : 1|1@1+ (1,0) [0|1] ""  dspace
+ SG_ AnyImpErr : 17|1@1+ (1,0) [0|1] ""  dspace
+ SG_ TsalGreenEn : 19|1@1+ (1,0) [0|1] ""  dspace
+ SG_ Shrt2GndAir : 5|1@1+ (1,0) [0|1] ""  dspace
+ SG_ DcBusPrchRlyEnIntenState : 9|1@1+ (1,0) [0|1] ""  dspace
+ SG_ AirNegClsdAuxState : 10|1@1+ (1,0) [0|1] ""  dspace
+ SG_ AirPosClsdAuxState : 11|1@1+ (1,0) [0|1] ""  dspace
+ SG_ AirNegClsdImpErr : 13|1@1+ (1,0) [0|1] ""  dspace
+ SG_ AmsErrLtch : 0|1@1+ (1,0) [0|1] ""  dspace
+ SG_ Shrt2GndAirPos : 4|1@1+ (1,0) [0|1] ""  dspace
+ SG_ DcBusVehSideOver60VImpErr : 16|1@1+ (1,0) [0|1] ""  dspace
+
+
+
+CM_ BU_ dash "dashboard ECU";
+CM_ BU_ dspace "automotive ECU";
+CM_ BU_ tlb_bat "tsal-latch-board battery ECU";
+CM_ BU_ bms_lv "battery-management-system low-voltage";
+CM_ BO_ 7 "shutdown line TSAC section status";
+CM_ SG_ 7 ShtdwnPostImdErrRlyActiveLvl "Shutdown line active level post IMD error relay";
+CM_ SG_ 7 ShtdwnPostPrchResistVoltageLvl "Shutdown line voltage level post precharge resistor of shutdown line";
+CM_ SG_ 7 ShtdwnTsacFinSecInActiveLvl "Shutdown line active level @ TSAC final section input";
+CM_ SG_ 7 ShtdwnPostDlyCapsVoltageLvl "Shutdown line voltage level post delay capacitors of shutdown line";
+CM_ SG_ 7 ShtdwnTsacInitSecInActiveLvl "Shutdown line active level @ TSAC Initial section input";
+CM_ SG_ 7 ShtdwnPostAmsErrRlyActiveLvl "Shutdown line active level post AMS error relay";
+CM_ BO_ 8 "tlb battery internal functions";
+CM_ SG_ 8 ShtdwnPrchRlyEn "Shutdown Precharge Relay Enable status, enables Shutdwon Precharge Relay";
+CM_ SG_ 8 Shrt2GndAirNeg "Shortcircuit to GND detected on AIR negative terminal";
+CM_ SG_ 8 DcBusVehicleSideOver60V "High Voltage DC Bus, vehicle side (@ Air Positive), over 60 volt";
+CM_ SG_ 8 AirNegClsdIntenState "AIR negative closed, Intentional State (signal is reliant on shutdown line beeing active)";
+CM_ SG_ 8 AirPosClsdIntenState "AIR positive closed, Intentional State (signal is reliant on shutdown line beeing active)";
+CM_ SG_ 8 DcBusPrchRlyEnAuxState "High Voltage DC bus precharge relay enable, auxiliary/actual state (signal is reliant on shutdown line beeing active)";
+CM_ SG_ 8 AirPosClsdImpErr "AIR positive closed implausibility error active (Intentional State != Auxiliary State)";
+CM_ SG_ 8 DcBusPrchRlyEnImpErr "High Voltage DC bus precharge relay enable, implausibility error active (Intentional State != Auxiliary State)";
+CM_ SG_ 8 AnyImpErrLtch "An/Any implausibility error is active, latched value";
+CM_ SG_ 8 ImdErrLtch "IMD error latched active, disables IMD Error Relay";
+CM_ SG_ 8 AnyImpErr "An/Any implausibility error is active";
+CM_ SG_ 8 TsalGreenEn "TSAL green enable active level";
+CM_ SG_ 8 Shrt2GndAir "Shortcircuit to GND detected on an AIR terminal (either poisitive or negative)";
+CM_ SG_ 8 DcBusPrchRlyEnIntenState "High Voltage DC bus precharge relay enable, intentional state (signal is reliant on shutdown line beeing active)";
+CM_ SG_ 8 AirNegClsdAuxState "AIR negative closed, auxiliary/actual state (signal is reliant on shutdown line beegin active)";
+CM_ SG_ 8 AirPosClsdAuxState "AIR positive closed, auxiliary/actual state (signal is reliant on shutdown line beegin active)";
+CM_ SG_ 8 AirNegClsdImpErr "AIR negative closed implausibility error active (Intentional State != Auxiliary State)";
+CM_ SG_ 8 AmsErrLtch "AMS error latched active, disables AMS Error Relay";
+CM_ SG_ 8 Shrt2GndAirPos "Shortcircuit to GND detected on AIR positive terminal";
+CM_ SG_ 8 DcBusVehSideOver60VImpErr "High Voltage DC Bus, vehicle side (@ Air Positive), over 60 volt, implausibility error active (more then 60V but can't be SUPER DANGER)";
+BA_DEF_ BO_  "matchingcriteria" INT 0 0;
+BA_DEF_DEF_  "matchingcriteria" 0;
+
